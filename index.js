@@ -755,6 +755,25 @@ const App = (props) => {
 
   return (
     <div>
+      <div style={{ width: 400, display: 'inline-block' }}>
+        <OrgChartComponent
+          data={data}
+          colorsObject={colorsObject}
+          theme={theme}
+          height={300}
+        />
+      </div>
+
+      <div style={{ width: 800, marginLeft: '20px', display: 'inline-block' }}>
+        <OrgChartComponent
+          data={data}
+          colorsObject={colorsObject}
+          theme={theme}
+          height={300}
+        />
+      </div>
+      <br />
+      <br />
       <OrgChartComponent
         data={data}
         colorsObject={colorsObject}

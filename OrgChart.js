@@ -65,6 +65,8 @@ export const OrgChartComponent = (props, ref, buttons) => {
       chart
         .container(d3Container.current)
         .data(data)
+        .rootMargin(-300)
+        .svgHeight(props.height || 800)
         .colorsObject(props.colorsObject)
         .theme(props.theme)
         .nodeContent(function (d) {
@@ -118,9 +120,12 @@ export const OrgChartComponent = (props, ref, buttons) => {
     chart.zoomOut();
   }
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <div ref={d3Container} />
-      <div className="action-buttons">
+      <div
+        style={{ position: 'absolute', top: '20px', right: '20px' }}
+        className="action-buttons"
+      >
         {' '}
         <button
           onClick={zoomIn}
