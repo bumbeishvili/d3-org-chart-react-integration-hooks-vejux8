@@ -4,7 +4,7 @@ import { OrgChart } from './orgChart.d3.js';
 
 export const OrgChartComponent = (props, ref, buttons) => {
   const d3Container = useRef(null);
-  let chart = null;
+  const chartRef = useRef(null);
 
   function getDescription(string) {
     if (string.length > 80) return string.slice(0, 80).concat('...');
@@ -59,10 +59,10 @@ export const OrgChartComponent = (props, ref, buttons) => {
           return { ...copy, ...{ parentId } };
         });
 
-      if (!chart) {
-        chart = new OrgChart();
+      if (!chartRef.current) {
+        chartRef.current = new OrgChart();
       }
-      chart
+      chartRef.current
         .container(d3Container.current)
         .data(data)
         .rootMargin(-300)
@@ -88,7 +88,9 @@ export const OrgChartComponent = (props, ref, buttons) => {
         })
         .render();
 
-      d3.select('.zoom-out-button').on('click', chart.zoomOut());
+      d3.select('.zoom-out-button').on('click', () => {
+        chartRef.current.zoomOut();
+      });
     }
   }, [props.data, d3Container.current]);
 
@@ -113,11 +115,11 @@ export const OrgChartComponent = (props, ref, buttons) => {
     );
 
   function zoomIn() {
-    chart.zoomIn();
+    chartRef.current.zoomIn();
   }
 
   function zoomOut() {
-    chart.zoomOut();
+    chartRef.current.zoomOut();
   }
   return (
     <div style={{ position: 'relative' }}>

@@ -301,6 +301,7 @@ const App = (props) => {
                 name: 'redis',
                 id: 181,
                 children: null,
+                _expanded: true,
                 attributes: {
                   variant: '0',
                 },
